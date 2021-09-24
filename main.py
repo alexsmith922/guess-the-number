@@ -10,13 +10,31 @@
 from art import logo
 import random
 
-# print(logo)
+print(logo)
 
-Numbers = [
-  random.randint(1,101)
-]
+RANDOM_NUMBER = random.randint(1,101)
 
-print(Numbers)
+print(RANDOM_NUMBER)
 
 print("I'm thinking of a number...between 0 and 100")
+user_difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
+if user_difficulty == "easy":
+  user_guesses_remaining = 10
+  print(f"You have {user_guesses_remaining} attempts remaining")
+if user_difficulty == "hard":
+  user_guesses_remaining = 5
+  print(f"You have {user_guesses_remaining} attempts remaining")
 
+user_guess = int(input("Make a guess: "))
+
+while user_guesses_remaining != 0 and user_guess != RANDOM_NUMBER:
+  second_guess = int(input("Guess again: "))
+  if second_guess > RANDOM_NUMBER:
+    user_guesses_remaining -= 1
+    print(f"Too high.\nGuess again.\nYou have {user_guesses_remaining}attempts remaining to guess the number")
+  elif second_guess < RANDOM_NUMBER:
+    user_guesses_remaining -=1
+    print(f"Too low.\nGuess again.\nYou have {user_guesses_remaining} attempts remaining to guess the number")
+  elif second_guess == RANDOM_NUMBER:
+    print("You win!")
+  
