@@ -10,31 +10,26 @@
 from art import logo
 import random
 
-print(logo)
+# print(logo)
 
-RANDOM_NUMBER = random.randint(1,101)
+RANDOM_NUMBER = random.randint(1, 101)
 
 print(RANDOM_NUMBER)
 
-print("I'm thinking of a number...between 0 and 100")
-user_difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
-if user_difficulty == "easy":
-  user_guesses_remaining = 10
-  print(f"You have {user_guesses_remaining} attempts remaining")
-if user_difficulty == "hard":
-  user_guesses_remaining = 5
-  print(f"You have {user_guesses_remaining} attempts remaining")
+print("Welcome to the Guessing Game!\nI'm thining of a number between 1 and 100.")
+difficulty = input("Pick your poison. Type 'easy' or 'hard': ") == "easy"
 
-user_guess = int(input("Make a guess: "))
+def guess_selector(difficulty):
+  if difficulty == "easy":
+    user_guesses = 10
+    return user_guesses
+  elif difficulty == "hard":
+    user_guesses = 5
+    return user_guesses
+  else:
+    print("Try again homeslice")
+    guess_selector(difficulty)
 
-while user_guesses_remaining != 0 and user_guess != RANDOM_NUMBER:
-  second_guess = int(input("Guess again: "))
-  if second_guess > RANDOM_NUMBER:
-    user_guesses_remaining -= 1
-    print(f"Too high.\nGuess again.\nYou have {user_guesses_remaining}attempts remaining to guess the number")
-  elif second_guess < RANDOM_NUMBER:
-    user_guesses_remaining -=1
-    print(f"Too low.\nGuess again.\nYou have {user_guesses_remaining} attempts remaining to guess the number")
-  elif second_guess == RANDOM_NUMBER:
-    print("You win!")
+guess_selector(difficulty)
+
   
